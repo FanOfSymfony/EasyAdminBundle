@@ -23,6 +23,9 @@ class Configuration implements ConfigurationInterface
         $this->addDesignSection($rootNode);
         $this->addViewsSection($rootNode);
         $this->addEntitiesSection($rootNode);
+        $this->addCustomFormTypeSection($rootNode);
+        $this->addRoleAdminSection($rootNode);
+        $this->addEmbedListSection($rootNode);
 
         return $treeBuilder;
     }
@@ -470,6 +473,58 @@ class Configuration implements ConfigurationInterface
                     ->info('The list of entities to manage in the administration zone.')
                     ->prototype('variable')
                 ->end()
+            ->end()
+        ;
+    }
+
+    private function addCustomFormTypeSection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+
+            ->arrayNode('custom_form_types')
+            ->useAttributeAsKey('short_name')
+            ->prototype('scalar')
+            ->validate()
+            ->ifTrue(function ($v) {
+                return !class_exists($v);
+            })
+            ->thenInvalid('Class %s for custom type does not exist !')
+            ->end()
+            ->end()
+            ->end()
+
+            ->end()
+        ;
+    }
+
+    private function addRoleAdminSection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+
+            ->scalarNode('minimum_role')
+            ->defaultNull()
+            ->end()
+
+            ->end()
+        ;
+    }
+
+    private function addEmbedListSection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+
+            ->arrayNode('embedded_list')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->booleanNode('open_new_tab')
+            ->defaultTrue()
+            ->end()
+            ->end()
+            ->end()
+
             ->end()
         ;
     }

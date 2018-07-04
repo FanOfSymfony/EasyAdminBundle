@@ -26,6 +26,12 @@ class EasyAdminExtension extends Extension
         $backendConfig = $this->processConfiguration(new Configuration(), $configs);
         $container->setParameter('easyadmin.config', $backendConfig);
         $container->setParameter('easyadmin.cache.dir', $container->getParameter('kernel.cache_dir').'/easy_admin');
+        $container->setParameter('easyadmin.custom_form_types', $backendConfig['custom_form_types']);
+        $container->setParameter('easyadmin.minimum_role', $backendConfig['minimum_role']);
+        $container->setParameter(
+            'easyadmin.embedded_list.open_new_tab',
+            $backendConfig['embedded_list']['open_new_tab']
+        );
 
         // load bundle's services
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

@@ -120,5 +120,56 @@
         </service>
 
         <service id="easy_admin.property_accessor" alias="property_accessor" public="true" />
+
+        <!-- extra features -->
+        <service id="easy_admin.subscriber.post_query_builder" class="FanOfSymfony\Bundle\EasyAdminBundle\EventListener\PostQueryBuilderSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+        <service id="easy_admin.config_pass.short_form_types" class="FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ShortFormTypeConfigPass">
+            <argument>%easy_admin.custom_form_types%</argument>
+            <!-- Makes it process just before PropertyConfigPass -->
+            <tag name="easyadmin.config_pass" priority="41"/>
+        </service>
+        <service id="easy_admin.config_pass.embedded_list_view" class="FanOfSymfony\Bundle\EasyAdminBundle\Configuration\EmbeddedListViewConfigPass">
+            <argument>%easy_admin.embedded_list.open_new_tab%</argument>
+            <!-- Makes it process just after ViewConfigPass -->
+            <tag name="easyadmin.config_pass" priority="29"/>
+        </service>
+        <service id="easy_admin.helper.embedded_list" class="FanOfSymfony\Bundle\EasyAdminBundle\Helper\EmbeddedListHelper">
+            <argument type="service" id="doctrine"/>
+            <argument>%easyadmin.config%</argument>
+        </service>
+        <service id="easy_admin.form.embedded_list_type" class="FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminEmbeddedListType">
+            <argument type="service" id="easy_admin.helper.embedded_list"/>
+            <tag name="form.type"/>
+        </service>
+
+        <!-- Admin security roles -->
+        <service id="easy_admin.helper.editable_roles" class="FanOfSymfony\Bundle\EasyAdminBundle\Helper\EditableRolesHelper">
+            <argument type="service" id="security.token_storage"/>
+            <argument>%security.role_hierarchy.roles%</argument>
+        </service>
+        <service id="easy_admin.form.security.admin_roles_type" class="FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\Security\AdminRolesType">
+            <argument key="$editableRolesBuilder" type="service" id="easy_admin.helper.editable_roles" />
+            <tag name="form.type"/>
+        </service>
+        <service id="easy_admin.twig.extension.checkbox_tree" class="FanOfSymfony\Bundle\EasyAdminBundle\Twig\CheckboxTreeExtension">
+            <tag name="twig.extension"/>
+        </service>
+        <service id="easy_admin.admin_authorization_checker" class="FanOfSymfony\Bundle\EasyAdminBundle\Security\AdminAuthorizationChecker" public="true">
+            <argument type="service" id="security.authorization_checker"/>
+            <argument>%easy_admin.minimum_role%</argument>
+        </service>
+        <service id="easy_admin.helper.menu" class="FanOfSymfony\Bundle\EasyAdminBundle\Helper\MenuHelper">
+            <argument type="service" id="easy_admin.admin_authorization_checker"/>
+        </service>
+        <service id="easy_admin.twig.extension.menu" class="FanOfSymfony\Bundle\EasyAdminBundle\Twig\MenuExtension">
+            <argument type="service" id="easy_admin.helper.menu"/>
+            <tag name="twig.extension"/>
+        </service>
+        <service id="easy_admin.twig.extension.admin_authorization" class="FanOfSymfony\Bundle\EasyAdminBundle\Twig\AdminAuthorizationExtension">
+            <argument type="service" id="easy_admin.admin_authorization_checker"/>
+            <tag name="twig.extension"/>
+        </service>
     </services>
 </container>
