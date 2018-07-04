@@ -4,7 +4,7 @@ namespace FanOfSymfony\Bundle\EasyAdminBundle\EventListener;
 
 use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
-use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
+use FanOfSymfony\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
 

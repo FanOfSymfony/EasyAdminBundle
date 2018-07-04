@@ -60,10 +60,5 @@
             "AppTestBundle\\": "tests/Fixtures/AppTestBundle/",
             "FanOfSymfony\\Bundle\\EasyAdminBundle\\Tests\\": "tests/"
         }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0.x-dev"
-        }
     }
 }
