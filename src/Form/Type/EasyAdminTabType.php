@@ -1,6 +1,6 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Form\Type;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 

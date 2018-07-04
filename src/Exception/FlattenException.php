@@ -1,6 +1,6 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Exception;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Exception;
 
 use Symfony\Component\Debug\Exception\FlattenException as BaseFlattenException;
 
@@ -24,7 +24,7 @@ class FlattenException extends BaseFlattenException
     public static function create(\Exception $exception, $statusCode = null, array $headers = [])
     {
         if (!$exception instanceof BaseException) {
-            throw new \RuntimeException(sprintf('You should only try to create an instance of "%s" with a "FanOfSymfony\EasyAdminBundle\Exception\BaseException" instance, or subclass. "%s" given.', __CLASS__, \get_class($exception)));
+            throw new \RuntimeException(sprintf('You should only try to create an instance of "%s" with a "FanOfSymfony\Bundle\EasyAdminBundle\Exception\BaseException" instance, or subclass. "%s" given.', __CLASS__, \get_class($exception)));
         }
 
         /** @var FlattenException $e */

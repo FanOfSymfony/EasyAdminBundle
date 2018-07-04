@@ -1,10 +1,10 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Router;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Router;
 
 use Doctrine\Common\Util\ClassUtils;
-use FanOfSymfony\EasyAdminBundle\Configuration\ConfigManagerInterface;
-use FanOfSymfony\EasyAdminBundle\Exception\UndefinedEntityException;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ConfigManagerInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\UndefinedEntityException;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Search;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Search;
 
 use Pagerfanta\Pagerfanta;
 

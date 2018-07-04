@@ -1,6 +1,6 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Form\Type\Configurator;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\Configurator;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;

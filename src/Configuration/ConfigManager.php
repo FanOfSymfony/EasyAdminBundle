@@ -1,8 +1,8 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Configuration;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Configuration;
 
-use FanOfSymfony\EasyAdminBundle\Exception\UndefinedEntityException;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\UndefinedEntityException;
 use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 final class ConfigManager implements ConfigManagerInterface

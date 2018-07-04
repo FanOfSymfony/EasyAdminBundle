@@ -1,6 +1,6 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Configuration;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Configuration;
 
 /**
  * The interface that must be implemented by all the classes that normalize,

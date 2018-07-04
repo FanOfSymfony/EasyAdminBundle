@@ -1,6 +1,6 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Exception;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Exception;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>

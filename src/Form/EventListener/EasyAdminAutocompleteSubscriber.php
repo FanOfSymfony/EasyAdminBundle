@@ -1,8 +1,8 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Form\EventListener;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\EventListener;
 
-use FanOfSymfony\EasyAdminBundle\Form\Util\FormTypeHelper;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Util\FormTypeHelper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;

@@ -1,9 +1,9 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\EventListener;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\EventListener;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
-use FanOfSymfony\EasyAdminBundle\Exception\EntityNotFoundException;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\EntityNotFoundException;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\HttpFoundation\RequestStack;
 

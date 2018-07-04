@@ -1,8 +1,8 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Configuration;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Configuration;
 
-use FanOfSymfony\EasyAdminBundle\Form\Util\FormTypeHelper;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Util\FormTypeHelper;
 use Symfony\Component\Form\FormRegistryInterface;
 use Symfony\Component\Form\Guess\TypeGuess;
 use Symfony\Component\Form\Guess\ValueGuess;

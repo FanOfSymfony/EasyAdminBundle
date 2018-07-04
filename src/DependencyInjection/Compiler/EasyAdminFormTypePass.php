@@ -1,8 +1,8 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\DependencyInjection\Compiler;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection\Compiler;
 
-use FanOfSymfony\EasyAdminBundle\Form\Type\Configurator\TypeConfiguratorInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\Configurator\TypeConfiguratorInterface;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;

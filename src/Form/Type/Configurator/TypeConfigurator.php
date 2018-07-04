@@ -1,8 +1,8 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Form\Type\Configurator;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\Configurator;
 
-use FanOfSymfony\EasyAdminBundle\Configuration\ConfigManagerInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ConfigManagerInterface;
 use Symfony\Component\Form\FormConfigInterface;
 
 /**

@@ -1,9 +1,9 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Form\Type\Configurator;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\Configurator;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
-use FanOfSymfony\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
 use Symfony\Component\Form\FormConfigInterface;
 
 /**

@@ -1,10 +1,10 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Twig;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Twig;
 
 use Doctrine\ORM\Mapping\ClassMetadata;
-use FanOfSymfony\EasyAdminBundle\Configuration\ConfigManagerInterface;
-use FanOfSymfony\EasyAdminBundle\Router\EasyAdminRouter;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ConfigManagerInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Router\EasyAdminRouter;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

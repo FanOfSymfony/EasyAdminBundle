@@ -1,12 +1,12 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Form\Util;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\Util;
 
-use FanOfSymfony\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
-use FanOfSymfony\EasyAdminBundle\Form\Type\EasyAdminDividerType;
-use FanOfSymfony\EasyAdminBundle\Form\Type\EasyAdminFormType;
-use FanOfSymfony\EasyAdminBundle\Form\Type\EasyAdminGroupType;
-use FanOfSymfony\EasyAdminBundle\Form\Type\EasyAdminSectionType;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminDividerType;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminFormType;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminGroupType;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminSectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;

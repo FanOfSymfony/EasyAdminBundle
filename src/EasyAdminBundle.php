@@ -1,9 +1,9 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle;
+namespace FanOfSymfony\Bundle\EasyAdminBundle;
 
-use FanOfSymfony\EasyAdminBundle\DependencyInjection\Compiler\EasyAdminConfigPass;
-use FanOfSymfony\EasyAdminBundle\DependencyInjection\Compiler\EasyAdminFormTypePass;
+use FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection\Compiler\EasyAdminConfigPass;
+use FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection\Compiler\EasyAdminFormTypePass;
 use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;

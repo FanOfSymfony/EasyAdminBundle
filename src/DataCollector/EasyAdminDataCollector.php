@@ -1,8 +1,8 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\DataCollector;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\DataCollector;
 
-use FanOfSymfony\EasyAdminBundle\Configuration\ConfigManagerInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ConfigManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;

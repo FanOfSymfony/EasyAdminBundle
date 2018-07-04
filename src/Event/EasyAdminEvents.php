@@ -1,6 +1,6 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Event;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Event;
 
 /**
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>

@@ -1,9 +1,9 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\EventListener;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\EventListener;
 
-use FanOfSymfony\EasyAdminBundle\Exception\BaseException;
-use FanOfSymfony\EasyAdminBundle\Exception\FlattenException;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\BaseException;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\FlattenException;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

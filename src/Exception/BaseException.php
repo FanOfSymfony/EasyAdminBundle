@@ -1,6 +1,6 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Exception;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Exception;
 
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Form\Type\Configurator;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\Configurator;
 
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormConfigInterface;

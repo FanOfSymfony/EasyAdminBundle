@@ -1,12 +1,12 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Form\Type;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\Type;
 
 use ArrayObject;
-use FanOfSymfony\EasyAdminBundle\Configuration\ConfigManagerInterface;
-use FanOfSymfony\EasyAdminBundle\Form\EventListener\EasyAdminTabSubscriber;
-use FanOfSymfony\EasyAdminBundle\Form\Type\Configurator\TypeConfiguratorInterface;
-use FanOfSymfony\EasyAdminBundle\Form\Util\FormTypeHelper;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ConfigManagerInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\EventListener\EasyAdminTabSubscriber;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\Configurator\TypeConfiguratorInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Util\FormTypeHelper;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;

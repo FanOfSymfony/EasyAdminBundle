@@ -1,8 +1,8 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Search;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Search;
 
-use FanOfSymfony\EasyAdminBundle\Configuration\ConfigManagerInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ConfigManagerInterface;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 
 /**

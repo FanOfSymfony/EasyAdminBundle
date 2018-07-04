@@ -1,9 +1,9 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Form\Type;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\Type;
 
-use FanOfSymfony\EasyAdminBundle\Configuration\ConfigManagerInterface;
-use FanOfSymfony\EasyAdminBundle\Form\EventListener\EasyAdminAutocompleteSubscriber;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ConfigManagerInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\EventListener\EasyAdminAutocompleteSubscriber;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\FormBuilderInterface;

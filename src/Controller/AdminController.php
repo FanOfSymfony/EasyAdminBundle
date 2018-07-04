@@ -1,16 +1,16 @@
 <?php
 
-namespace FanOfSymfony\EasyAdminBundle\Controller;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Controller;
 
 use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\QueryBuilder;
-use FanOfSymfony\EasyAdminBundle\Event\EasyAdminEvents;
-use FanOfSymfony\EasyAdminBundle\Exception\EntityRemoveException;
-use FanOfSymfony\EasyAdminBundle\Exception\ForbiddenActionException;
-use FanOfSymfony\EasyAdminBundle\Exception\NoEntitiesConfiguredException;
-use FanOfSymfony\EasyAdminBundle\Exception\UndefinedEntityException;
-use FanOfSymfony\EasyAdminBundle\Form\Util\FormTypeHelper;
+use FanOfSymfony\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\EntityRemoveException;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\ForbiddenActionException;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\NoEntitiesConfiguredException;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\UndefinedEntityException;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Util\FormTypeHelper;
 use Pagerfanta\Pagerfanta;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
