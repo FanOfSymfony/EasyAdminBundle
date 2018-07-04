@@ -12,7 +12,7 @@ use FanOfSymfony\EasyAdminBundle\Exception\NoEntitiesConfiguredException;
 use FanOfSymfony\EasyAdminBundle\Exception\UndefinedEntityException;
 use FanOfSymfony\EasyAdminBundle\Form\Util\FormTypeHelper;
 use Pagerfanta\Pagerfanta;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Symfony\Component\Form\Form;
