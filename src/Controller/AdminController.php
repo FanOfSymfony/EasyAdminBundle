@@ -18,7 +18,7 @@ class AdminController extends AbstractAdminController
             $actionName = 'list';
         }
 
-        $this->get('easy_admin.admin_authorization_checker')->checksUserAccess(
+        $this->get('easyadmin.admin_authorization_checker')->checksUserAccess(
             $this->entity,
             $actionName
         );
