@@ -11,10 +11,15 @@ env:
         - COVERAGE="false"
         - PHPUNIT_FLAGS="-v"
         - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
+        - ENABLE_CODE_COVERAGE="false"
 
 matrix:
     fast_finish: true
     include:
+        # bleeding edge (unreleased dev versions where failures are allowed)
+        - php: nightly
+          env: STABILITY="dev"
+
           # Minimum supported dependencies with the latest and oldest PHP version
         - php: 7.2
           env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="weak_vendors"
@@ -24,7 +29,7 @@ matrix:
           # Test the latest stable release
         - php: 7.1
         - php: 7.2
-          env: CHECK_PHP_SYNTAX="true"
+          env: CHECK_PHP_SYNTAX="true" ENABLE_CODE_COVERAGE="true" COVERAGE="true"
 
           # Latest commit to master
         - php: 7.2
@@ -43,12 +48,13 @@ install:
     - if [[ "$CHECK_PHP_SYNTAX" == "true" ]]; then composer require --dev --no-update friendsofphp/php-cs-fixer; fi;
     # To be removed when this issue will be resolved: https://github.com/composer/composer/issues/5355
     - if [[ "$COMPOSER_FLAGS" == *"--prefer-lowest"* ]]; then composer update --prefer-dist --no-interaction --prefer-stable --quiet; fi
+    - if [[ "$ENABLE_CODE_COVERAGE" == "true" ]]; then composer require --dev php-coveralls/php-coveralls; fi
     - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
     - ./vendor/bin/simple-phpunit install
 
 script:
     - composer validate --strict --no-check-lock
-    - ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS
+    - if [[ $ENABLE_CODE_COVERAGE == "true" ]]; then vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml; else ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS; fi
     - if [[ "$CHECK_PHP_SYNTAX" == "true" ]]; then php vendor/bin/php-cs-fixer --no-interaction --dry-run --diff -v fix; fi;
     # this checks that the Twig template files contain no syntax errors
     - ./tests/bin/console lint:twig "src" "tests"
@@ -57,3 +63,6 @@ script:
     # - ./tests/bin/console lint:xliff "src/Resources/translations"
     # this checks that the YAML config files contain no syntax errors
     - ./tests/bin/console lint:yaml "tests"
+
+after_success:
+    - if [[ "$ENABLE_CODE_COVERAGE" == "true" ]]; then php vendor/bin/php-coveralls -v --config .coveralls.yml; fi;
