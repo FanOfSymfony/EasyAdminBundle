@@ -1,5 +1,5 @@
 {
-    "name": "FanOfSymfony/easyadmin-bundle",
+    "name": "fanofsymfony/easyadmin-bundle",
     "type": "symfony-bundle",
     "description": "Admin generator for Symfony applications",
     "keywords": ["backend", "admin", "generator"],
