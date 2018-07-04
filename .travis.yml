@@ -7,6 +7,7 @@ cache:
 
 env:
     global:
+        - deps="no"
         - CHECK_PHP_SYNTAX="false"
         - COVERAGE="false"
         - PHPUNIT_FLAGS="-v"
@@ -37,7 +38,7 @@ matrix:
 
     allow_failures:
           # Dev-master is allowed to fail.
-        - env: STABILITY="dev"
+        - php: nightly
 
 before_install:
     - if [[ $COVERAGE != true ]]; then phpenv config-rm xdebug.ini || true; fi
@@ -54,7 +55,7 @@ install:
 
 script:
     - composer validate --strict --no-check-lock
-    - if [[ $ENABLE_CODE_COVERAGE == "true" ]]; then vendor/bin/phpunit --coverage-text --coverage-clover build/logs/clover.xml; else ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS; fi
+    - if [[ $ENABLE_CODE_COVERAGE == "true" ]]; then ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS --coverage-text --coverage-clover build/logs/clover.xml; else ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS; fi
     - if [[ "$CHECK_PHP_SYNTAX" == "true" ]]; then php vendor/bin/php-cs-fixer --no-interaction --dry-run --diff -v fix; fi;
     # this checks that the Twig template files contain no syntax errors
     - ./tests/bin/console lint:twig "src" "tests"
