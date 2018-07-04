@@ -1,6 +1,10 @@
 FanOfSymfony - EasyAdmin
 =========
 
+[![Build Status](https://travis-ci.org/FanOfSymfony/EasyAdminBundle.svg?branch=master)](https://travis-ci.org/FanOfSymfony/EasyAdminBundle)
+
+## Documentation
+
 EasyAdmin creates administration backends for your Symfony applications with
 unprecedented simplicity.
 

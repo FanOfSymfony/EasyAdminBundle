@@ -1,80 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d80f72b7-f5d8-4702-8835-1ec5c664c756" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/CONTRIBUTING.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/Bug_report.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/ISSUE_TEMPLATE/Feature_request.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/PULL_REQUEST_TEMPLATE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/RELEASE_CHECKLIST.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CONTRIBUTORS.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/UPGRADE.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/ActionConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/ActionConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/CacheConfigManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/CacheConfigManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/ConfigManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/ConfigManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/ConfigManagerInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/ConfigManagerInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/ConfigPassInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/ConfigPassInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/DefaultConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/DefaultConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/DesignConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/DesignConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/MenuConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/MenuConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/MetadataConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/MetadataConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/NormalizerConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/NormalizerConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/PropertyConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/PropertyConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/TemplateConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/TemplateConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Configuration/ViewConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Configuration/ViewConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/AdminController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/AdminController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataCollector/EasyAdminDataCollector.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataCollector/EasyAdminDataCollector.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DependencyInjection/Compiler/EasyAdminConfigPass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DependencyInjection/Compiler/EasyAdminConfigPass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DependencyInjection/Compiler/EasyAdminFormTypePass.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DependencyInjection/Compiler/EasyAdminFormTypePass.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DependencyInjection/Configuration.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DependencyInjection/Configuration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DependencyInjection/EasyAdminExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DependencyInjection/EasyAdminExtension.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EasyAdminBundle.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EasyAdminBundle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Event/EasyAdminEvents.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Event/EasyAdminEvents.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventListener/ControllerListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventListener/ControllerListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventListener/ExceptionListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventListener/ExceptionListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EventListener/RequestPostInitializeListener.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/EventListener/RequestPostInitializeListener.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exception/BaseException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/BaseException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exception/EntityNotFoundException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/EntityNotFoundException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exception/EntityRemoveException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/EntityRemoveException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exception/ExceptionContext.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/ExceptionContext.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exception/FlattenException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/FlattenException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exception/ForbiddenActionException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/ForbiddenActionException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exception/NoEntitiesConfiguredException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/NoEntitiesConfiguredException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Exception/UndefinedEntityException.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Exception/UndefinedEntityException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EventListener/EasyAdminAutocompleteSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EventListener/EasyAdminAutocompleteSubscriber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EventListener/EasyAdminTabSubscriber.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EventListener/EasyAdminTabSubscriber.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Extension/EasyAdminExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Extension/EasyAdminExtension.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Guesser/MissingDoctrineOrmTypeGuesser.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Guesser/MissingDoctrineOrmTypeGuesser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/Configurator/AutocompleteTypeConfigurator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/Configurator/AutocompleteTypeConfigurator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/Configurator/CheckboxTypeConfigurator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/Configurator/CheckboxTypeConfigurator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/Configurator/CollectionTypeConfigurator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/Configurator/CollectionTypeConfigurator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/Configurator/EntityTypeConfigurator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/Configurator/EntityTypeConfigurator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/Configurator/IvoryCKEditorTypeConfigurator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/Configurator/IvoryCKEditorTypeConfigurator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/Configurator/TypeConfigurator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/Configurator/TypeConfigurator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/Configurator/TypeConfiguratorInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/Configurator/TypeConfiguratorInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/EasyAdminAutocompleteType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/EasyAdminAutocompleteType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/EasyAdminDividerType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/EasyAdminDividerType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/EasyAdminFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/EasyAdminFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/EasyAdminGroupType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/EasyAdminGroupType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/EasyAdminSectionType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/EasyAdminSectionType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Type/EasyAdminTabType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Type/EasyAdminTabType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/Util/FormTypeHelper.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/Util/FormTypeHelper.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/config/form.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/config/form.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/config/services.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/config/services.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Resources/views/data_collector/easyadmin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/src/Resources/views/data_collector/easyadmin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router/EasyAdminRouter.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/EasyAdminRouter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Search/Autocomplete.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Search/Autocomplete.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Search/Finder.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Search/Finder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Search/Paginator.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Search/Paginator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Search/QueryBuilder.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Search/QueryBuilder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Twig/EasyAdminTwigExtension.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Twig/EasyAdminTwigExtension.php" afterDir="false" />
-    </list>
+    <list default="true" id="d80f72b7-f5d8-4702-8835-1ec5c664c756" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -235,12 +162,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1530721357630</updated>
-      <workItem from="1530721358788" duration="325000" />
+      <workItem from="1530721358788" duration="605000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="325000" />
+    <option name="totallyTimeSpent" value="605000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1129" extended-state="6" />
