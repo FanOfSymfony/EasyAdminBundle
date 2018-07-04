@@ -73,7 +73,7 @@ class ControllerListener
             $customController .= '::'.$controllerMethod;
         } else {
             // 'service:method' syntax for controllers as services
-            $customController .= ':'.$controllerMethod;
+            $customController .= '::'.$controllerMethod;
         }
 
         $request->attributes->set('_controller', $customController);

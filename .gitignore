@@ -5,3 +5,6 @@ vendor/*
 build/
 .idea/*
 doc/
+.env
+.env.dist
+symfony.lock
