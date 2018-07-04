@@ -1,9 +1,9 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\EventListener;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\EventListener;
 
-use EasyCorp\Bundle\EasyAdminBundle\EventListener\ExceptionListener;
-use EasyCorp\Bundle\EasyAdminBundle\Exception\EntityNotFoundException as EasyEntityNotFoundException;
+use FanOfSymfony\Bundle\EasyAdminBundle\EventListener\ExceptionListener;
+use FanOfSymfony\Bundle\EasyAdminBundle\Exception\EntityNotFoundException as EasyEntityNotFoundException;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

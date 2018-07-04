@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

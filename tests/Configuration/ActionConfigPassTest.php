@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\DependencyInjection\Compiler;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\DependencyInjection\Compiler;
 
-use EasyCorp\Bundle\EasyAdminBundle\Configuration\ActionConfigPass;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ActionConfigPass;
 use PHPUnit\Framework\TestCase;
 
 class ActionConfigPassTest extends TestCase

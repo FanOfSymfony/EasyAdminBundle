@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\DependencyInjection\Compiler;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\DependencyInjection\Compiler;
 
-use EasyCorp\Bundle\EasyAdminBundle\Configuration\NormalizerConfigPass;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\NormalizerConfigPass;
 use PHPUnit\Framework\TestCase;
 
 class NormalizerConfigPassTest extends TestCase

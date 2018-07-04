@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Controller;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Controller;
 
-use EasyCorp\Bundle\EasyAdminBundle\Tests\Fixtures\AbstractTestCase;
+use FanOfSymfony\Bundle\EasyAdminBundle\Tests\Fixtures\AbstractTestCase;
 
 class EasyAdminDataCollectorTest extends AbstractTestCase
 {

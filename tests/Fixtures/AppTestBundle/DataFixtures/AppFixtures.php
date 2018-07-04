@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle\DataFixtures;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle\DataFixtures;
 
 use AppTestBundle\Entity\FunctionalTests\Category;
 use AppTestBundle\Entity\FunctionalTests\Product;

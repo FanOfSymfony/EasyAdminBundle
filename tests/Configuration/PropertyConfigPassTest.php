@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\DependencyInjection\Compiler;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\DependencyInjection\Compiler;
 
-use EasyCorp\Bundle\EasyAdminBundle\Configuration\PropertyConfigPass;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\PropertyConfigPass;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Form\Guess\Guess;
 use Symfony\Component\Form\Guess\TypeGuess;

@@ -1,12 +1,12 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Form\Type;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Form\Type;
 
 use AppTestBundle\Entity\UnitTests\Category;
 use Doctrine\Common\Collections\ArrayCollection;
-use EasyCorp\Bundle\EasyAdminBundle\Configuration\ConfigManagerInterface;
-use EasyCorp\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
-use EasyCorp\Bundle\EasyAdminBundle\Form\Util\FormTypeHelper;
+use FanOfSymfony\Bundle\EasyAdminBundle\Configuration\ConfigManagerInterface;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Util\FormTypeHelper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\PreloadedExtension;
 use Symfony\Component\Form\Test\TypeTestCase;

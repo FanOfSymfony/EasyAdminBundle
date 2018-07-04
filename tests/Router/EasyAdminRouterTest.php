@@ -1,10 +1,10 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Router;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Router;
 
 use AppTestBundle\Entity\FunctionalTests\Product;
-use EasyCorp\Bundle\EasyAdminBundle\Router\EasyAdminRouter;
-use EasyCorp\Bundle\EasyAdminBundle\Tests\Fixtures\AbstractTestCase;
+use FanOfSymfony\Bundle\EasyAdminBundle\Router\EasyAdminRouter;
+use FanOfSymfony\Bundle\EasyAdminBundle\Tests\Fixtures\AbstractTestCase;
 
 /**
  * @author Konstantin Grachev <me@grachevko.ru>
@@ -43,7 +43,7 @@ final class EasyAdminRouterTest extends AbstractTestCase
     /**
      * @dataProvider provideUndefinedEntities
      *
-     * @expectedException \EasyCorp\Bundle\EasyAdminBundle\Exception\UndefinedEntityException
+     * @expectedException \FanOfSymfony\Bundle\EasyAdminBundle\Exception\UndefinedEntityException
      */
     public function testUndefinedEntityException($entity, $action)
     {

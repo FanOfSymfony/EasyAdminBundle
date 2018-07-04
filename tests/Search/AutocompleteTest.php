@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Search;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Search;
 
-use EasyCorp\Bundle\EasyAdminBundle\Tests\Fixtures\AbstractTestCase;
+use FanOfSymfony\Bundle\EasyAdminBundle\Tests\Fixtures\AbstractTestCase;
 
 class AutocompleteTest extends AbstractTestCase
 {

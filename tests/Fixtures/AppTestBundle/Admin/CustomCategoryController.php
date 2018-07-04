@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle\Admin;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle\Admin;
 
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
+use FanOfSymfony\Bundle\EasyAdminBundle\Controller\AdminController as EasyAdminController;
 use Symfony\Component\HttpFoundation\Response;
 
 class CustomCategoryController extends EasyAdminController

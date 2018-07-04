@@ -1,9 +1,9 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Controller;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Controller;
 
 use Doctrine\ORM\EntityManager;
-use EasyCorp\Bundle\EasyAdminBundle\Tests\Fixtures\AbstractTestCase;
+use FanOfSymfony\Bundle\EasyAdminBundle\Tests\Fixtures\AbstractTestCase;
 
 class DefaultBackendTest extends AbstractTestCase
 {

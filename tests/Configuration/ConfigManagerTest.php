@@ -1,6 +1,6 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Configuration;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Configuration;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;

@@ -9,6 +9,6 @@ easy_admin:
 
 services:
     app.controller:
-        class: EasyCorp\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle\Admin\CustomCategoryControllerAsService
+        class: FanOfSymfony\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle\Admin\CustomCategoryControllerAsService
         arguments: ['@request_stack']
         public: true

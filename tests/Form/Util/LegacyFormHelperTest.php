@@ -1,8 +1,8 @@
 <?php
 
-namespace EasyCorp\Bundle\EasyAdminBundle\Tests\Form\Util\Type;
+namespace FanOfSymfony\Bundle\EasyAdminBundle\Tests\Form\Util\Type;
 
-use EasyCorp\Bundle\EasyAdminBundle\Form\Util\FormTypeHelper;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Util\FormTypeHelper;
 use PHPUnit\Framework\TestCase;
 
 class FormTypeHelperTest extends TestCase

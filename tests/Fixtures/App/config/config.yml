@@ -53,5 +53,5 @@ services:
     logger:
         class: Psr\Log\NullLogger
 
-    EasyCorp\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle\DataFixtures\AppFixtures:
+    FanOfSymfony\Bundle\EasyAdminBundle\Tests\Fixtures\AppTestBundle\DataFixtures\AppFixtures:
         tags: ['doctrine.fixture.orm']
