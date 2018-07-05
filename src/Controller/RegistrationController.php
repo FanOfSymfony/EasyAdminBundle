@@ -70,6 +70,7 @@ class RegistrationController extends Controller
         }
         return $this->render('@EasyAdmin/registration/register.html.twig', array(
             'form' => $form->createView(),
+            'easyadminConfig' => $this->getParameter('easyadmin.config'),
         ));
     }
 
@@ -91,6 +92,7 @@ class RegistrationController extends Controller
 
         return $this->render('@EasyAdmin/registration/check_email.html.twig', array(
             'user' => $user,
+            'easyadminConfig' => $this->getParameter('easyadmin.config'),
         ));
     }
 
@@ -129,6 +131,7 @@ class RegistrationController extends Controller
         return $this->render('@FOSUser/Registration/confirmed.html.twig', array(
             'user' => $user,
             'targetUrl' => $this->getTargetUrlFromSession($request->getSession()),
+            'easyadminConfig' => $this->getParameter('easyadmin.config'),
         ));
     }
     /**
