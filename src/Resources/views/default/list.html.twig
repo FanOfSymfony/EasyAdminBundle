@@ -48,7 +48,7 @@
                 <h1 class="title">
                     {{ block('content_title') }}
                     {# Show applied filters informations #}
-                    {% if requestFilters|length > 0 %}
+                    {% if _request_parameters.filters|length > 0 %}
                         <span class="pull-right">
                             <a href="#" id="applied-request-filters-popover" data-toggle="collapse" data-target="#applied-request-filters">
                                 <i class="fa fa-filter text-warning"></i>
@@ -58,7 +58,7 @@
                 </h1>
                 <div class="pull-right collapse" id="applied-request-filters">
                     <dl class="dl-horizontal">
-                        {% for filterKey, filterValue in requestFilters %}
+                        {% for filterKey, filterValue in _request_parameters.filters %}
                             <dt>{{ filterKey }}</dt><dd>{{ filterValue is iterable ? filterValue|join(',') : filterValue }}</dd>
                         {% endfor %}
                     </dl>
@@ -77,7 +77,7 @@
                             <div class="form-action {{ _action.css_class|default('') }}">
                                 <form method="get" action="{{ path('easyadmin') }}">
                                     {% block search_form %}
-                                        {% for field, value in requestFilters %}
+                                        {% for field, value in _request_parameters.filters %}
                                             {% if value is iterable %}
                                                 {% for val in value %}
                                                     <input type="hidden" name="filters[{{ field }}][]" value="{{ val }}">
@@ -118,7 +118,7 @@
                                     {{ _action.label is defined and not _action.label is empty ? _action.label|trans(_trans_parameters) }}
                                 </a>
                             </div>
-                        {% endblock %}
+                        {% endif %}
                         {% endblock new_action %}
                     {% endif %}
                 {% endblock global_actions %}
