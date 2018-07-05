@@ -2,7 +2,10 @@
 
 namespace FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\Processor;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Alias;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -17,28 +20,127 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 class EasyAdminExtension extends Extension
 {
     /**
+     * @var array
+     */
+    private static $doctrineDrivers = array(
+        'orm' => array(
+            'registry' => 'doctrine',
+            'tag' => 'doctrine.event_subscriber',
+        ),
+        'mongodb' => array(
+            'registry' => 'doctrine_mongodb',
+            'tag' => 'doctrine_mongodb.odm.event_subscriber',
+        ),
+        'couchdb' => array(
+            'registry' => 'doctrine_couchdb',
+            'tag' => 'doctrine_couchdb.event_subscriber',
+            'listener_class' => 'FOS\UserBundle\Doctrine\CouchDB\UserListener',
+        ),
+    );
+
+    private $mailerNeeded = false;
+    private $sessionNeeded = false;
+
+    /**
      * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        // process bundle's configuration parameters
         $configs = $this->processConfigFiles($configs);
-        $backendConfig = $this->processConfiguration(new Configuration(), $configs);
-        $container->setParameter('easyadmin.config', $backendConfig);
-        $container->setParameter('easyadmin.security', $backendConfig['security']);
-        $container->setParameter('easyadmin.security.user_class', $backendConfig['security']['user_class']);
+        $config = $this->processConfiguration(new Configuration(), $configs);
+
+
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+
+        $container->setParameter('easyadmin.config', $config);
         $container->setParameter('easyadmin.cache.dir', $container->getParameter('kernel.cache_dir').'/easy_admin');
-        $container->setParameter('easyadmin.custom_form_types', $backendConfig['custom_form_types']);
-        $container->setParameter('easyadmin.minimum_role', $backendConfig['minimum_role']);
+        $container->setParameter('easyadmin.custom_form_types', $config['custom_form_types']);
+        $container->setParameter('easyadmin.minimum_role', $config['minimum_role']);
+
         $container->setParameter(
             'easyadmin.embedded_list.open_new_tab',
-            $backendConfig['embedded_list']['open_new_tab']
+            $config['embedded_list']['open_new_tab']
         );
 
+        /**
+         * Security
+         */
+
+        if ('custom' !== $config['db_driver']) {
+            if (isset(self::$doctrineDrivers[$config['db_driver']])) {
+                $loader->load('doctrine.xml');
+                $container->setAlias('easyadmin.doctrine_registry', new Alias(self::$doctrineDrivers[$config['db_driver']]['registry'], false));
+            } else {
+                $loader->load(sprintf('%s.xml', $config['db_driver']));
+            }
+
+//            var_dump($container->getRe('easyadmin.doctrine_registry'));
+
+            $container->setParameter('easyadmin'.'.backend_type_'.$config['db_driver'], true);
+        }
+
+        if (isset(self::$doctrineDrivers[$config['db_driver']])) {
+            $definition = $container->getDefinition('easyadmin.object_manager');
+
+            var_dump($definition);
+
+
+            $definition->setFactory(array(new Reference('easyadmin.doctrine_registry'), 'getManager'));
+        }
+
+        foreach (array( 'services', 'form', 'security', 'util', 'listeners') as $basename) {
+            $loader->load(sprintf('%s.xml', $basename));
+        }
+
+        if (!$config['use_authentication_listener']) {
+            $container->removeDefinition('easyadmin.listener.authentication');
+        }
+
+//        if ($config['use_flash_notifications']) {
+//            $this->sessionNeeded = true;
+//            $loader->load('flash_notifications.xml');
+//        }
+
+
+
+
+        $container->setAlias('easyadmin.util.email_canonicalizer', $config['service']['email_canonicalizer']);
+        $container->setAlias('easyadmin.util.username_canonicalizer', $config['service']['username_canonicalizer']);
+        $container->setAlias('easyadmin.util.token_generator', $config['service']['token_generator']);
+        $container->setAlias('easyadmin.user_manager', new Alias($config['service']['user_manager'], true));
+
+
+        if ($config['use_listener'] && isset(self::$doctrineDrivers[$config['db_driver']])) {
+            $listenerDefinition = $container->getDefinition('easyadmin.user_listener');
+            $listenerDefinition->addTag(self::$doctrineDrivers[$config['db_driver']]['tag']);
+            if (isset(self::$doctrineDrivers[$config['db_driver']]['listener_class'])) {
+                $listenerDefinition->setClass(self::$doctrineDrivers[$config['db_driver']]['listener_class']);
+            }
+        }
+
+        $this->remapParametersNamespaces($config, $container, array(
+            '' => array(
+                'db_driver' => 'easy_admin.storage',
+                'firewall_name' => 'easyadmin.firewall_name',
+                'model_manager_name' => 'easyadmin.model_manager_name',
+                'user_class' => 'easyadmin.user_class',
+            ),
+        ));
+
+        if (!empty($config['registration'])) {
+            $this->loadRegistration($config['registration'], $container, $loader, $config['from_email']);
+        }
+
+
         // load bundle's services
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
-        $loader->load('form.xml');
+
+        if ($this->sessionNeeded) {
+            // Use a private alias rather than a parameter, to avoid leaking it at runtime (the private alias will be removed)
+            $container->setAlias('easyadmin.session', new Alias('session', false));
+        }
+
+
+
 
         if ($container->getParameter('kernel.debug')) {
             // in 'dev', use the built-in Symfony exception listener
@@ -51,6 +153,32 @@ class EasyAdminExtension extends Extension
             $container->getDefinition('easyadmin.configuration.design_config_pass')
                 ->replaceArgument(2, $container->getParameter('locale'));
         }
+    }
+
+    /**
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param XmlFileLoader    $loader
+     * @param array            $fromEmail
+     */
+    private function loadRegistration(array $config, ContainerBuilder $container, XmlFileLoader $loader, array $fromEmail)
+    {
+        $loader->load('registration.xml');
+        $this->sessionNeeded = true;
+        if ($config['confirmation']['enabled']) {
+            $this->mailerNeeded = true;
+            $loader->load('email_confirmation.xml');
+        }
+        if (isset($config['confirmation']['from_email'])) {
+            // overwrite the global one
+            $fromEmail = $config['confirmation']['from_email'];
+            unset($config['confirmation']['from_email']);
+        }
+        $container->setParameter('easyadmin.registration.confirmation.from_email', array($fromEmail['address'] => $fromEmail['sender_name']));
+        $this->remapParametersNamespaces($config, $container, array(
+            'confirmation' => 'easyadmin.registration.confirmation.%s',
+            'form' => 'easyadmin.registration.form.%s',
+        ));
     }
 
     /**
@@ -175,6 +303,47 @@ class EasyAdminExtension extends Extension
         }
 
         return $entityName;
+    }
+
+    /**
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param array            $map
+     */
+    protected function remapParameters(array $config, ContainerBuilder $container, array $map)
+    {
+        foreach ($map as $name => $paramName) {
+            if (array_key_exists($name, $config)) {
+                $container->setParameter($paramName, $config[$name]);
+            }
+        }
+    }
+    /**
+     * @param array            $config
+     * @param ContainerBuilder $container
+     * @param array            $namespaces
+     */
+    protected function remapParametersNamespaces(array $config, ContainerBuilder $container, array $namespaces)
+    {
+        foreach ($namespaces as $ns => $map) {
+            if ($ns) {
+                if (!array_key_exists($ns, $config)) {
+                    continue;
+                }
+                $namespaceConfig = $config[$ns];
+            } else {
+                $namespaceConfig = $config;
+
+//                var_dump($namespaceConfig);
+            }
+            if (is_array($map)) {
+                $this->remapParameters($namespaceConfig, $container, $map);
+            } else {
+                foreach ($namespaceConfig as $name => $value) {
+                    $container->setParameter(sprintf($map, $name), $value);
+                }
+            }
+        }
     }
 
     /**

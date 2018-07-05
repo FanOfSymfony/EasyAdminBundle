@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="easyadmin.util.canonicalizer.default" class="FanOfSymfony\Bundle\EasyAdminBundle\Util\Canonicalizer" public="false" />
+
+        <service id="easyadmin.util.user_manipulator" class="FanOfSymfony\Bundle\EasyAdminBundle\Util\UserManipulator">
+            <argument type="service" id="easyadmin.user_manager" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="easyadmin.util.token_generator.default" class="FanOfSymfony\Bundle\EasyAdminBundle\Util\TokenGenerator" public="false" />
+
+        <service id="FanOfSymfony\Bundle\EasyAdminBundle\Util\TokenGeneratorInterface" alias="easyadmin.util.token_generator" public="false" />
+
+        <service id="easyadmin.util.password_updater" class="FanOfSymfony\Bundle\EasyAdminBundle\Util\PasswordUpdater" public="false">
+            <argument type="service" id="security.encoder_factory" />
+        </service>
+
+        <service id="FanOfSymfony\Bundle\EasyAdminBundle\Util\PasswordUpdaterInterface" alias="easyadmin.util.password_updater" public="false" />
+
+        <service id="easyadmin.util.canonical_fields_updater" class="FanOfSymfony\Bundle\EasyAdminBundle\Util\CanonicalFieldsUpdater" public="false">
+            <argument type="service" id="easyadmin.util.username_canonicalizer" />
+            <argument type="service" id="easyadmin.util.email_canonicalizer" />
+        </service>
+
+        <service id="FanOfSymfony\Bundle\EasyAdminBundle\Util\CanonicalFieldsUpdater" alias="easyadmin.util.canonical_fields_updater" public="false" />
+
+        <service id="FanOfSymfony\Bundle\EasyAdminBundle\Model\UserManagerInterface" alias="easyadmin.user_manager" public="false" />
+    </services>
+
+</container>

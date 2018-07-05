@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="easyadmin.user_manager.default" class="FanOfSymfony\Bundle\EasyAdminBundle\Doctrine\UserManager" public="false">
+            <argument type="service" id="easyadmin.util.password_updater" />
+            <argument type="service" id="easyadmin.util.canonical_fields_updater" />
+            <argument type="service" id="easyadmin.object_manager" />
+            <argument>%easyadmin.user_class%</argument>
+        </service>
+
+        <!-- The factory is configured in the DI extension class to support more Symfony versions -->
+        <service id="easyadmin.object_manager" class="Doctrine\Common\Persistence\ObjectManager" public="false">
+            <argument>%easyadmin.model_manager_name%</argument>
+        </service>
+
+        <service id="easyadmin.user_listener" class="FanOfSymfony\Bundle\EasyAdminBundle\Doctrine\UserListener" public="false">
+            <argument type="service" id="easyadmin.util.password_updater" />
+            <argument type="service" id="easyadmin.util.canonical_fields_updater" />
+        </service>
+    </services>
+
+</container>

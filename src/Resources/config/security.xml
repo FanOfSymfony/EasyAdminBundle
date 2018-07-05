@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="easyadmin.interactive_login_listener.class">FanOfSymfony\Bundle\EasyAdminBundle\EventListener\LastLoginListener</parameter>
+        <parameter key="easyadmin.login_manager.class">FanOfSymfony\Bundle\EasyAdminBundle\Security\LoginManager</parameter>
+    </parameters>
+
+    <services>
+        <service id="easyadmin.user_manager.default" class="FanOfSymfony\Bundle\EasyAdminBundle\Doctrine\UserManager" public="false">
+            <argument type="service" id="easyadmin.util.password_updater" />
+            <argument type="service" id="easyadmin.util.canonical_fields_updater" />
+            <argument type="service" id="easyadmin.object_manager" />
+            <argument>%easyadmin.user_class%</argument>
+        </service>
+
+        <service id="easyadmin.user_listener" class="FanOfSymfony\Bundle\EasyAdminBundle\Doctrine\UserListener" public="false">
+            <argument type="service" id="easyadmin.util.password_updater" />
+            <argument type="service" id="easyadmin.util.canonical_fields_updater" />
+        </service>
+
+        <service id="easyadmin.interactive_login_listener" class="%easyadmin.interactive_login_listener.class%">
+            <tag name="kernel.event_subscriber" />
+            <argument type="service" id="easyadmin.user_manager" />
+        </service>
+
+        <service id="easyadmin.login_manager" class="%easyadmin.login_manager.class%">
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="security.user_checker" />
+            <argument type="service" id="security.authentication.session_strategy" />
+            <argument type="service" id="request_stack" />
+            <argument>null</argument> <!-- remember_me service -->
+        </service>
+
+        <service id="FanOfSymfony\Bundle\EasyAdminBundle\Security\LoginManagerInterface" alias="easyadmin.login_manager" public="false" />
+
+        <service id="easyadmin.user_provider.username" class="FanOfSymfony\Bundle\EasyAdminBundle\Security\UserProvider" public="false">
+            <argument type="service" id="easyadmin.user_manager" />
+        </service>
+
+        <service id="easyadmin.user_provider.username_email" class="FanOfSymfony\Bundle\EasyAdminBundle\Security\EmailUserProvider" public="false">
+            <argument type="service" id="easyadmin.user_manager" />
+        </service>
+
+        <service id="easyadmin.user_provider.email" class="FanOfSymfony\Bundle\EasyAdminBundle\Security\EmailProvider" public="false">
+            <argument type="service" id="easyadmin.user_manager" />
+        </service>
+
+        <service id="easyadmin.controller" class="FanOfSymfony\Bundle\EasyAdminBundle\Controller\SecurityController" public="true">
+            <argument type="service" id="security.csrf.token_manager" on-invalid="null" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="FanOfSymfony\Bundle\EasyAdminBundle\Controller\SecurityController" alias="easyadmin.controller" public="true" />
+    </services>
+
+</container>

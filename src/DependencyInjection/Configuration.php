@@ -11,7 +11,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  *
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
-class   Configuration implements ConfigurationInterface
+class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
@@ -19,6 +19,8 @@ class   Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('easy_admin');
 
         $this->addDeprecationsSection($rootNode);
+        $this->addRegistrationSection($rootNode);
+        $this->addSystemSection($rootNode);
         $this->addGlobalOptionsSection($rootNode);
         $this->addSecuritySection($rootNode);
         $this->addDesignSection($rootNode);
@@ -27,6 +29,7 @@ class   Configuration implements ConfigurationInterface
         $this->addCustomFormTypeSection($rootNode);
         $this->addRoleAdminSection($rootNode);
         $this->addEmbedListSection($rootNode);
+        $this->addServiceSection($rootNode);
 
         return $treeBuilder;
     }
@@ -37,126 +40,134 @@ class   Configuration implements ConfigurationInterface
             // 'list_max_results' global option was deprecated in 1.0.8
             // and replaced by 'list -> max_results'
             ->beforeNormalization()
-                ->ifTrue(function ($v) {
-                    return isset($v['list_max_results']);
-                })
-                ->then(function ($v) {
-                    if (!isset($v['list'])) {
-                        $v['list'] = [];
-                    }
+            ->ifTrue(function ($v) {
+                return isset($v['list_max_results']);
+            })
+            ->then(function ($v) {
+                if (!isset($v['list'])) {
+                    $v['list'] = [];
+                }
 
-                    // if the new option is defined, don't override it with the legacy option
-                    if (!isset($v['list']['max_results'])) {
-                        $v['list']['max_results'] = $v['list_max_results'];
-                    }
+                // if the new option is defined, don't override it with the legacy option
+                if (!isset($v['list']['max_results'])) {
+                    $v['list']['max_results'] = $v['list_max_results'];
+                }
 
-                    unset($v['list_max_results']);
+                unset($v['list_max_results']);
 
-                    return $v;
-                })
+                return $v;
+            })
             ->end()
-
             // 'list_actions' global option was deprecated in 1.0.8
             // and replaced by 'list -> actions'
             ->beforeNormalization()
-                ->ifTrue(function ($v) {
-                    return isset($v['list_actions']);
-                })
-                ->then(function ($v) {
-                    // if the new option is defined, don't override it with the legacy option
-                    if (!isset($v['list']['actions'])) {
-                        $v['list']['actions'] = $v['list_actions'];
-                    }
+            ->ifTrue(function ($v) {
+                return isset($v['list_actions']);
+            })
+            ->then(function ($v) {
+                // if the new option is defined, don't override it with the legacy option
+                if (!isset($v['list']['actions'])) {
+                    $v['list']['actions'] = $v['list_actions'];
+                }
 
-                    unset($v['list_actions']);
+                unset($v['list_actions']);
 
-                    return $v;
-                })
+                return $v;
+            })
             ->end()
-
             // make sure the new 'design' global option exists to simplify
             // updating the deprecated 'assets -> css' and 'assets -> js' options
             ->beforeNormalization()
-                ->always()
-                ->then(function ($v) {
-                    if (!isset($v['design'])) {
-                        $v['design'] = ['assets' => []];
-                    }
+            ->always()
+            ->then(function ($v) {
+                if (!isset($v['design'])) {
+                    $v['design'] = ['assets' => []];
+                }
 
-                    return $v;
-                })
+                return $v;
+            })
             ->end()
-
             // 'assets -> css' global option was deprecated in 1.1.0
             // and replaced by 'design -> assets -> css'
             ->beforeNormalization()
-                ->ifTrue(function ($v) {
-                    return isset($v['assets']['css']);
-                })
-                ->then(function ($v) {
-                    // if the new option is defined, don't override it with the legacy option
-                    if (!isset($v['design']['assets']['css'])) {
-                        $v['design']['assets']['css'] = $v['assets']['css'];
-                    }
+            ->ifTrue(function ($v) {
+                return isset($v['assets']['css']);
+            })
+            ->then(function ($v) {
+                // if the new option is defined, don't override it with the legacy option
+                if (!isset($v['design']['assets']['css'])) {
+                    $v['design']['assets']['css'] = $v['assets']['css'];
+                }
 
-                    unset($v['assets']['css']);
+                unset($v['assets']['css']);
 
-                    return $v;
-                })
+                return $v;
+            })
             ->end()
-
             // 'assets -> js' global option was deprecated in 1.1.0
             // and replaced by 'design -> assets -> js'
             ->beforeNormalization()
-                ->ifTrue(function ($v) {
-                    return isset($v['assets']['js']);
-                })
-                ->then(function ($v) {
-                    // if the new option is defined, don't override it with the legacy option
-                    if (!isset($v['design']['assets']['js'])) {
-                        $v['design']['assets']['js'] = $v['assets']['js'];
-                    }
+            ->ifTrue(function ($v) {
+                return isset($v['assets']['js']);
+            })
+            ->then(function ($v) {
+                // if the new option is defined, don't override it with the legacy option
+                if (!isset($v['design']['assets']['js'])) {
+                    $v['design']['assets']['js'] = $v['assets']['js'];
+                }
 
-                    unset($v['assets']['js']);
+                unset($v['assets']['js']);
 
-                    return $v;
-                })
+                return $v;
+            })
             ->end()
-
             // after updating 'assets -> css' and 'assets -> js' deprecated options,
             // remove the parent 'assets' deprecated option if it's defined
             ->beforeNormalization()
-                ->always()
-                ->then(function ($v) {
-                    if (isset($v['assets'])) {
-                        unset($v['assets']);
-                    }
+            ->always()
+            ->then(function ($v) {
+                if (isset($v['assets'])) {
+                    unset($v['assets']);
+                }
 
-                    return $v;
-                })
+                return $v;
+            })
             ->end()
-
             ->children()
-                ->variableNode('list_actions')
-                    ->info('DEPRECATED: use the "actions" option of the "list" view.')
-                ->end()
-
-                ->integerNode('list_max_results')
-                    ->info('DEPRECATED: use "max_results" option under the "list" global key.')
-                ->end()
-
-                ->arrayNode('assets')
-                    ->children()
-                        ->arrayNode('css')
-                            ->info('DEPRECATED: use the "design -> assets -> css" option.')
-                        ->end()
-                        ->arrayNode('js')
-                            ->info('DEPRECATED: use the "design -> assets -> js" option.')
-                        ->end()
-                    ->end()
-                ->end()
+            ->variableNode('list_actions')
+            ->info('DEPRECATED: use the "actions" option of the "list" view.')
             ->end()
-        ;
+            ->integerNode('list_max_results')
+            ->info('DEPRECATED: use "max_results" option under the "list" global key.')
+            ->end()
+            ->arrayNode('assets')
+            ->children()
+            ->arrayNode('css')
+            ->info('DEPRECATED: use the "design -> assets -> css" option.')
+            ->end()
+            ->arrayNode('js')
+            ->info('DEPRECATED: use the "design -> assets -> js" option.')
+            ->end()
+            ->end()
+            ->end()
+            ->end();
+    }
+
+    private function addSystemSection(ArrayNodeDefinition $rootNode)
+    {
+        $supportedDrivers = array('orm', 'mongodb', 'couchdb', 'custom');
+        $rootNode
+            ->children()
+            ->scalarNode('db_driver')
+            ->validate()
+            ->ifNotInArray($supportedDrivers)
+            ->thenInvalid('The driver %s is not supported. Please choose one of '.json_encode($supportedDrivers))
+            ->end()
+            ->cannotBeOverwritten()
+            ->isRequired()
+            ->cannotBeEmpty()
+            ->end();
+
     }
 
     private function addGlobalOptionsSection(ArrayNodeDefinition $rootNode)
@@ -166,6 +177,20 @@ class   Configuration implements ConfigurationInterface
                 ->scalarNode('site_name')
                     ->defaultValue('EasyAdmin')
                     ->info('The name displayed as the title of the administration zone (e.g. company name, project name).')
+                ->end()
+                ->scalarNode('user_class')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('firewall_name')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('model_manager_name')->defaultNull()->end()
+                ->booleanNode('use_authentication_listener')->defaultTrue()->end()
+                ->booleanNode('use_listener')->defaultTrue()->end()
+                ->booleanNode('use_flash_notifications')->defaultTrue()->end()
+                ->booleanNode('use_username_form_type')->defaultTrue()->end()
+                ->arrayNode('from_email')
+                ->isRequired()
+                ->children()
+                ->scalarNode('address')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('sender_name')->isRequired()->cannotBeEmpty()->end()
+                ->end()
                 ->end()
 
                 ->arrayNode('formats')
@@ -216,7 +241,51 @@ class   Configuration implements ConfigurationInterface
                 ->end()
             ->end()
         ;
+
     }
+
+    /**
+     * @param ArrayNodeDefinition $node
+     */
+    private function addRegistrationSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+            ->arrayNode('registration')
+            ->addDefaultsIfNotSet()
+            ->canBeUnset()
+            ->children()
+            ->arrayNode('confirmation')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->booleanNode('enabled')->defaultFalse()->end()
+            ->scalarNode('template')->defaultValue('@EasyAdmin/registration/email.txt.twig')->end()
+            ->arrayNode('from_email')
+            ->canBeUnset()
+            ->children()
+            ->scalarNode('address')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('sender_name')->isRequired()->cannotBeEmpty()->end()
+            ->end()
+            ->end()
+            ->end()
+            ->end()
+            ->arrayNode('form')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('type')->defaultValue(Type\RegistrationFormType::class)->end()
+            ->scalarNode('name')->defaultValue('easyadmin_registration_form')->end()
+            ->arrayNode('validation_groups')
+            ->prototype('scalar')->end()
+            ->defaultValue(array('Registration', 'Default'))
+            ->end()
+            ->end()
+            ->end()
+            ->end()
+            ->end()
+            ->end();
+    }
+
+
 
     private function addSecuritySection(ArrayNodeDefinition $rootNode)
     {
@@ -225,14 +294,18 @@ class   Configuration implements ConfigurationInterface
             ->arrayNode('security')
             ->addDefaultsIfNotSet()
             ->children()
-            // the 'theme' option is not used at the moment, but it allows us to be prepared for the future
-            ->scalarNode('user_class')
-            ->defaultValue('App\\Entity\\User')
-            ->validate()
-            ->ifTrue(function ($v) {
-                return !class_exists($v);
-            })
-            ->thenInvalid('Class %s for custom type does not exist !')
+            ->scalarNode('user_class')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('firewall_name')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('model_manager_name')->defaultNull()->end()
+            ->booleanNode('use_authentication_listener')->defaultTrue()->end()
+            ->booleanNode('use_listener')->defaultTrue()->end()
+            ->booleanNode('use_flash_notifications')->defaultTrue()->end()
+            ->booleanNode('use_username_form_type')->defaultTrue()->end()
+            ->arrayNode('from_email')
+            ->isRequired()
+            ->children()
+            ->scalarNode('address')->isRequired()->cannotBeEmpty()->end()
+            ->scalarNode('sender_name')->isRequired()->cannotBeEmpty()->end()
             ->end()
             ->end()
             ->end()
@@ -549,5 +622,27 @@ class   Configuration implements ConfigurationInterface
 
             ->end()
         ;
+    }
+
+    /**
+     * @param ArrayNodeDefinition $node
+     */
+    private function addServiceSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->arrayNode('service')
+            ->addDefaultsIfNotSet()
+            ->children()
+            ->scalarNode('mailer')->defaultValue('easyadmin.mailer.default')->end()
+            ->scalarNode('email_canonicalizer')->defaultValue('easyadmin.util.canonicalizer.default')->end()
+            ->scalarNode('token_generator')->defaultValue('easyadmin.util.token_generator.default')->end()
+            ->scalarNode('username_canonicalizer')->defaultValue('easyadmin.util.canonicalizer.default')->end()
+            ->scalarNode('user_manager')->defaultValue('easyadmin.user_manager.default')->end()
+            ->end()
+            ->end()
+            ->end()
+            ->end();
     }
 }

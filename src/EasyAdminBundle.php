@@ -2,7 +2,12 @@
 
 namespace FanOfSymfony\Bundle\EasyAdminBundle;
 
+use Doctrine\Bundle\CouchDBBundle\DependencyInjection\Compiler\DoctrineCouchDBMappingsPass;
 use Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass;
+use Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass;
+use FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection\Compiler\CheckForSessionPass;
+use FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection\Compiler\InjectRememberMeServicesPass;
+use FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection\Compiler\InjectUserCheckerPass;
 use FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection\Compiler\EasyAdminConfigPass;
 use FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection\Compiler\EasyAdminFormTypePass;
 use FanOfSymfony\Bundle\EasyAdminBundle\DependencyInjection\Compiler\TwigPathPass;
@@ -19,32 +24,36 @@ class EasyAdminBundle extends Bundle
 
     public function build(ContainerBuilder $container)
     {
+        parent::build($container);
+
         $container->addCompilerPass(new TwigPathPass(), PassConfig::TYPE_BEFORE_OPTIMIZATION);
         $container->addCompilerPass(new EasyAdminFormTypePass(), PassConfig::TYPE_BEFORE_REMOVING);
         $container->addCompilerPass(new EasyAdminConfigPass());
 
+
+        $container->addCompilerPass(new InjectUserCheckerPass());
+        $container->addCompilerPass(new InjectRememberMeServicesPass());
+        $container->addCompilerPass(new CheckForSessionPass());
+//        $container->addCompilerPass(new CheckForMailerPass());
         $this->addRegisterMappingsPass($container);
     }
 
     /**
-     * Register storage mapping for model-based persisted objects from EasyAdminExtension.
-     * Much inspired from FOSUserBundle implementation.
-     *
-     * @see  https://github.com/FriendsOfSymfony/FOSUserBundle/blob/master/FOSUserBundle.php
-     *
      * @param ContainerBuilder $container
      */
     private function addRegisterMappingsPass(ContainerBuilder $container)
     {
-        $easyAdminExtensionBundlePath = dirname((new \ReflectionClass($this))->getFileName());
-        $easyAdminExtensionDoctrineMapping = $easyAdminExtensionBundlePath.'/Resources/config/doctrine-mapping';
-
         $mappings = array(
-            realpath($easyAdminExtensionDoctrineMapping) => 'FanOfSymfony\Bundle\EasyAdminBundle\Model',
+            realpath(__DIR__.'/Resources/config/doctrine-mapping') => 'FanOfSymfony\Bundle\EasyAdminBundle\Model',
         );
-
         if (class_exists('Doctrine\Bundle\DoctrineBundle\DependencyInjection\Compiler\DoctrineOrmMappingsPass')) {
-            $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver($mappings));
+            $container->addCompilerPass(DoctrineOrmMappingsPass::createXmlMappingDriver($mappings, array('easyadmin.model_manager_name'), 'easyadmin.backend_type_orm'));
+        }
+        if (class_exists('Doctrine\Bundle\MongoDBBundle\DependencyInjection\Compiler\DoctrineMongoDBMappingsPass')) {
+            $container->addCompilerPass(DoctrineMongoDBMappingsPass::createXmlMappingDriver($mappings, array('easyadmin.model_manager_name'), 'easyadmin.backend_type_mongodb'));
+        }
+        if (class_exists('Doctrine\Bundle\CouchDBBundle\DependencyInjection\Compiler\DoctrineCouchDBMappingsPass')) {
+            $container->addCompilerPass(DoctrineCouchDBMappingsPass::createXmlMappingDriver($mappings, array('easyadmin.model_manager_name'), 'easyadmin.backend_type_couchdb'));
         }
     }
 }

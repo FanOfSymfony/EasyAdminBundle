@@ -68,7 +68,7 @@ class FormAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     {
-        if ($request->get('_route') != 'easy_admin_login_check') {
+        if ($request->get('_route') != 'easy_admin_security_login') {
             return null;
         }
 
@@ -130,12 +130,12 @@ class FormAuthenticator extends AbstractGuardAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
     {
         $this->request->getCurrentRequest()->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
-        return new RedirectResponse($this->router->generate('easy_admin_login'));
+        return new RedirectResponse($this->router->generate('easy_admin_security_login'));
     }
 
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        return new RedirectResponse($this->router->generate('easy_admin_login'));
+        return new RedirectResponse($this->router->generate('easy_admin_security_login'));
     }
 
     public function supportsRememberMe()
@@ -154,7 +154,7 @@ class FormAuthenticator extends AbstractGuardAuthenticator
      */
     public function supports(Request $request)
     {
-        if ($request->attributes->get('_route') !== 'easy_admin_login' || !$request->isMethod('POST')) {
+        if ($request->attributes->get('_route') !== 'easy_admin_security_login' || !$request->isMethod('POST')) {
             return true;
         }
 

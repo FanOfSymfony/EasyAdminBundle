@@ -171,16 +171,5 @@
             <argument type="service" id="easyadmin.admin_authorization_checker"/>
             <tag name="twig.extension"/>
         </service>
-
-
-        <!-- authentication -->
-        <service id="easyadmin.form_authenticator" class="FanOfSymfony\Bundle\EasyAdminBundle\Security\FormAuthenticator">
-            <argument type="service" id="doctrine"/>
-            <argument type="service" id="security.password_encoder"/>
-            <argument type="service" id="router"/>
-            <argument type="service" id="request_stack"/>
-            <argument type="service" id="security.csrf.token_manager"/>
-            <argument>%easyadmin.security.user_class%</argument>
-        </service>
     </services>
 </container>

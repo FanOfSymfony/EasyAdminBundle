@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="easyadmin.registration.form.factory" class="FanOfSymfony\Bundle\EasyAdminBundle\Form\Factory\FormFactory">
+            <argument type="service" id="form.factory" />
+            <argument>%easyadmin.registration.form.name%</argument>
+            <argument>%easyadmin.registration.form.type%</argument>
+            <argument>%easyadmin.registration.form.validation_groups%</argument>
+        </service>
+
+        <service id="easyadmin.registration.form.type" class="FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\RegistrationFormType">
+            <tag name="form.type" alias="easyadmin_registration" />
+            <argument>%easyadmin.user_class%</argument>
+        </service>
+
+        <service id="easyadmin.registration.controller" class="FanOfSymfony\Bundle\EasyAdminBundle\Controller\RegistrationController" public="true">
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="easyadmin.registration.form.factory" />
+            <argument type="service" id="easyadmin.user_manager" />
+            <argument type="service" id="security.token_storage" />
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="FanOfSymfony\Bundle\EasyAdminBundle\Controller\RegistrationController" alias="easyadmin.registration.controller" public="true" />
+    </services>
+
+</container>

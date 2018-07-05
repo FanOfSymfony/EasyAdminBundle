@@ -2,7 +2,7 @@
 
 namespace FanOfSymfony\Bundle\EasyAdminBundle\Model;
 
-interface AdminGroupInterface
+interface GroupInterface
 {
     
 }
