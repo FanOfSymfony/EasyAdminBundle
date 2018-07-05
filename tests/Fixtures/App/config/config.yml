@@ -17,6 +17,10 @@ framework:
     session:
         storage_id: session.storage.mock_file
 
+easy_admin:
+    db_driver: orm
+
+
 twig:
     debug: false
     strict_variables: false
