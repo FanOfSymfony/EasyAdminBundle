@@ -41,12 +41,12 @@
             var hasCountAttr = parentDiv.data('count');
 
             if (hasCountAttr === undefined) {
-                var numItems = parentDiv.children('div.form-group').length;
-                parentDiv.data('count', ++numItems)
+            var numItems = parentDiv.children('div.form-group').length;
+            parentDiv.data('count', ++numItems)
             }
 
             if (0 == parentDiv.children().length && 'undefined' !== parentDiv.attr('data-empty-collection')) {
-                $(parentDiv.attr('data-empty-collection')).insertBefore(parentDiv);
+            $(parentDiv.attr('data-empty-collection')).insertBefore(parentDiv);
             }
             });
         {% endset %}
@@ -119,11 +119,11 @@
         {% if datetime is not defined or not datetime -%}
             <div {{ block('widget_container_attributes') -}}>
         {%- endif %}
-            {{- date_pattern|replace({
-                '{{ year }}': form_widget(form.year),
-                '{{ month }}': form_widget(form.month),
-                '{{ day }}': form_widget(form.day),
-            })|raw -}}
+        {{- date_pattern|replace({
+            '{{ year }}': form_widget(form.year),
+            '{{ month }}': form_widget(form.month),
+            '{{ day }}': form_widget(form.day),
+        })|raw -}}
         {% if datetime is not defined or not datetime -%}
             </div>
         {%- endif -%}
@@ -251,8 +251,8 @@
             {% set label = name|humanize %}
         {% endif %}
         <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
-            {{- widget|raw -}}
-            {{- label is not same as(false) ? label|trans({}, translation_domain ?: easyadmin.entity.translation_domain) -}}
+        {{- widget|raw -}}
+        {{- label is not same as(false) ? label|trans({}, translation_domain ?: easyadmin.entity.translation_domain) -}}
         </label>
     {% endif %}
 {% endblock checkbox_radio_label %}
@@ -288,24 +288,24 @@
     {% if allow_add|default(false) %}
         {% set js_add_item %}
             $(function() {
-                if (event.preventDefault) event.preventDefault(); else event.returnValue = false;
+            if (event.preventDefault) event.preventDefault(); else event.returnValue = false;
 
-                var collection = $('#{{ id }}');
-                // Use a counter to avoid having the same index more than once
-                var numItems = collection.data('count') || collection.children('div.form-group').length;
+            var collection = $('#{{ id }}');
+            // Use a counter to avoid having the same index more than once
+            var numItems = collection.data('count') || collection.children('div.form-group').length;
 
-                collection.prev('.collection-empty').remove();
+            collection.prev('.collection-empty').remove();
 
-                var newItem = collection.attr('data-prototype')
-                    .replace(/\>__name__label__\</g, '>' + numItems + '<')
-                    .replace(/_{{ name }}___name__/g, '_{{ name }}_' + numItems)
-                    .replace(/{{ name }}\]\[__name__\]/g, '{{ name }}][' + numItems + ']')
-                ;
+            var newItem = collection.attr('data-prototype')
+            .replace(/\>__name__label__\</g, '>' + numItems + '<')
+            .replace(/_{{ name }}___name__/g, '_{{ name }}_' + numItems)
+            .replace(/{{ name }}\]\[__name__\]/g, '{{ name }}][' + numItems + ']')
+            ;
 
-                // Increment the counter and store it in the collection
-                collection.data('count', ++numItems);
+            // Increment the counter and store it in the collection
+            collection.data('count', ++numItems);
 
-                collection.append(newItem).trigger('easyadmin.collection.item-added');
+            collection.append(newItem).trigger('easyadmin.collection.item-added');
             });
         {% endset %}
 
@@ -402,25 +402,25 @@
 {% endblock %}
 
 {% block vich_file_widget %}
-{% spaceless %}
-    <div class="easyadmin-vich-file">
-        {% if download_uri|default('') is not empty %}
-            {% set download_title = download_uri|split('/')|last ?: 'download'|trans({}, 'VichUploaderBundle') %}
-            <a href="{{ asset(download_uri) }}">{{ download_title }}</a>
-        {% endif %}
-
-        <div class="row">
-            {% if form.delete is defined %}
-            <div class="col-sm-3 col-md-2">
-                {{ form_row(form.delete, { label: 'action.delete' }) }}
-            </div>
+    {% spaceless %}
+        <div class="easyadmin-vich-file">
+            {% if download_uri|default('') is not empty %}
+                {% set download_title = download_uri|split('/')|last ?: 'download'|trans({}, 'VichUploaderBundle') %}
+                <a href="{{ asset(download_uri) }}">{{ download_title }}</a>
             {% endif %}
-            <div class="{{ form.delete is defined ? 'col-sm-9 col-md-10' : 'col-sm-12' }}">
-                {{ form_widget(form.file) }}
+
+            <div class="row">
+                {% if form.delete is defined %}
+                    <div class="col-sm-3 col-md-2">
+                        {{ form_row(form.delete, { label: 'action.delete' }) }}
+                    </div>
+                {% endif %}
+                <div class="{{ form.delete is defined ? 'col-sm-9 col-md-10' : 'col-sm-12' }}">
+                    {{ form_widget(form.file) }}
+                </div>
             </div>
         </div>
-    </div>
-{% endspaceless %}
+    {% endspaceless %}
 {% endblock %}
 
 {% block vich_image_row %}
@@ -429,26 +429,26 @@
 {% endblock %}
 
 {% block vich_image_widget %}
-{% spaceless %}
-    <div class="easyadmin-vich-image">
-        {{ form_widget(form.file) }}
-        {% if form.delete is defined %}
-            {{ form_row(form.delete, { label: 'action.delete' }) }}
-        {% endif %}
+    {% spaceless %}
+        <div class="easyadmin-vich-image">
+            {{ form_widget(form.file) }}
+            {% if form.delete is defined %}
+                {{ form_row(form.delete, { label: 'action.delete' }) }}
+            {% endif %}
 
-        {% if download_uri|default('') is not empty %}
-            {% set _lightbox_id = 'easyadmin-lightbox-' ~ id %}
+            {% if download_uri|default('') is not empty %}
+                {% set _lightbox_id = 'easyadmin-lightbox-' ~ id %}
 
-            <a href="#" class="easyadmin-thumbnail" data-featherlight="#{{ _lightbox_id }}" data-featherlight-close-on-click="anywhere">
-                <img src="{{ asset(download_uri) }}">
-            </a>
+                <a href="#" class="easyadmin-thumbnail" data-featherlight="#{{ _lightbox_id }}" data-featherlight-close-on-click="anywhere">
+                    <img src="{{ asset(download_uri) }}">
+                </a>
 
-            <div id="{{ _lightbox_id }}" class="easyadmin-lightbox">
-                <img src="{{ asset(download_uri) }}">
-            </div>
-        {% endif %}
-    </div>
-{% endspaceless %}
+                <div id="{{ _lightbox_id }}" class="easyadmin-lightbox">
+                    <img src="{{ asset(download_uri) }}">
+                </div>
+            {% endif %}
+        </div>
+    {% endspaceless %}
 {% endblock %}
 
 {% block easyadmin_rest %}
@@ -484,7 +484,7 @@
     {% set _request_parameters = { entity: easyadmin.entity.name, referer: app.request.query.get('referer') } %}
 
     {{ include('@EasyAdmin/default/includes/_actions.html.twig', {
-        actions: _entity_actions,
+        actions: _entity_actions|prune_item_actions(easyadmin.entity),
         request_parameters: _request_parameters,
         translation_domain: _translation_domain,
         trans_parameters: _trans_parameters,
@@ -588,7 +588,7 @@
                 action: 'autocomplete',
                 entity: autocomplete_entity_name,
             })|raw })
-        })
+    })
     }}
 {% endblock easyadmin_autocomplete_widget %}
 
@@ -632,31 +632,3 @@
 {% block easyadmin_admin_roles_widget %}
     {{ checkbox_tree(form) }}
 {% endblock %}
-
-{% block item_actions %}
-    {% set _translation_domain = easyadmin.entity.translation_domain %}
-    {% set _trans_parameters = { '%entity_name%':  easyadmin.entity.name|trans, '%entity_label%': easyadmin.entity.label|trans } %}
-
-    {# the 'save' action is hardcoded for the 'edit' and 'new' views #}
-    <button type="submit" class="btn btn-primary action-save">
-        <i class="fa fa-save"></i> {{ 'action.save'|trans(_trans_parameters, _translation_domain) }}
-    </button>
-
-    {% set _entity_actions = (easyadmin.view == 'new')
-        ? easyadmin_get_actions_for_new_item(easyadmin.entity.name)
-        : easyadmin_get_actions_for_edit_item(easyadmin.entity.name) %}
-
-    {% set _entity_id = (easyadmin.view == 'new')
-        ? null
-        : attribute(easyadmin.item, easyadmin.entity.primary_key_field_name) %}
-
-    {% set _request_parameters = { entity: easyadmin.entity.name, referer: app.request.query.get('referer') } %}
-
-    {{ include('@EasyAdmin/default/includes/_actions.html.twig', {
-        actions: _entity_actions|prune_item_actions(easyadmin.entity),
-        request_parameters: _request_parameters,
-        translation_domain: _translation_domain,
-        trans_parameters: _trans_parameters,
-        item_id: _entity_id
-    }, with_context = false) }}
-{% endblock item_actions %}
