@@ -20,7 +20,6 @@ framework:
 easy_admin:
     db_driver: orm
 
-
 twig:
     debug: false
     strict_variables: false

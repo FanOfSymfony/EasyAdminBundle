@@ -1,6 +1,4 @@
 easy_admin:
-    db_driver: orm
-
     entities:
         Product: AppTestBundle\Entity\FunctionalTests\Product
         Inventory:

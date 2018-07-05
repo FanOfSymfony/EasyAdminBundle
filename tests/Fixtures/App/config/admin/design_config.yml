@@ -1,6 +1,4 @@
 easy_admin:
-    db_driver: orm
-
     site_name: 'First Site Name'
     design:
         brand_color: 'red'

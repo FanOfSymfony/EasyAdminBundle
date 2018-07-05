@@ -1,6 +1,4 @@
 easy_admin:
-    db_driver: orm
-
     design:
         # this value is wrong on purpose to trigger an exception
         color_scheme: 'wrong_value'
