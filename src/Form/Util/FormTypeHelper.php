@@ -4,9 +4,11 @@ namespace FanOfSymfony\Bundle\EasyAdminBundle\Form\Util;
 
 use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminAutocompleteType;
 use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminDividerType;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminEmbeddedListType;
 use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminFormType;
 use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminGroupType;
 use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\EasyAdminSectionType;
+use FanOfSymfony\Bundle\EasyAdminBundle\Form\Type\Security\AdminRolesType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
@@ -96,9 +98,11 @@ final class FormTypeHelper
         // EasyAdmin custom types
         'easyadmin' => EasyAdminFormType::class,
         'easyadmin_autocomplete' => EasyAdminAutocompleteType::class,
+        'easyadmin_embedded_list' => EasyAdminEmbeddedListType::class,
         'easyadmin_divider' => EasyAdminDividerType::class,
         'easyadmin_group' => EasyAdminGroupType::class,
         'easyadmin_section' => EasyAdminSectionType::class,
+        'easyadmin_admin_roles' => AdminRolesType::class,
         // Popular third-party bundles types
         'ckeditor' => 'Ivory\\CKEditorBundle\\Form\\Type\\CKEditorType',
         'vich_file' => 'Vich\\UploaderBundle\\Form\\Type\\VichFileType',
