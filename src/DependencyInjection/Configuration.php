@@ -20,6 +20,7 @@ class   Configuration implements ConfigurationInterface
 
         $this->addDeprecationsSection($rootNode);
         $this->addGlobalOptionsSection($rootNode);
+        $this->addUserSection($rootNode);
         $this->addDesignSection($rootNode);
         $this->addViewsSection($rootNode);
         $this->addEntitiesSection($rootNode);
@@ -213,6 +214,26 @@ class   Configuration implements ConfigurationInterface
                     ->defaultValue('messages')
                     ->info('The translation domain used to translate the labels, titles and help messages of all entities.')
                 ->end()
+            ->end()
+        ;
+    }
+
+    private function addSecuritySection(ArrayNodeDefinition $rootNode)
+    {
+        $rootNode
+            ->children()
+            ->arrayNode('security')
+            ->addDefaultsIfNotSet()
+            ->children()
+            // the 'theme' option is not used at the moment, but it allows us to be prepared for the future
+            ->scalarNode('user_class')
+            ->defaultValue('App\\Entity\\User')
+            ->ifTrue(function ($v) {
+                return !class_exists($v);
+            })
+            ->thenInvalid('Class %s for custom type does not exist !')
+            ->end()
+            ->end()
             ->end()
         ;
     }
