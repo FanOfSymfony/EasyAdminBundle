@@ -1,0 +1,13 @@
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    type: annotation
+
+easy_admin_login:
+    path: /login
+    controller: FanOfSymfony\Bundle\EasyAdminBundle\Controller::loginAction
+
+easy_admin_login_check:
+    path: /login_check
+
+easy_admin_logout:
+    path: /logout

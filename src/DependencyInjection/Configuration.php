@@ -228,6 +228,7 @@ class   Configuration implements ConfigurationInterface
             // the 'theme' option is not used at the moment, but it allows us to be prepared for the future
             ->scalarNode('user_class')
             ->defaultValue('App\\Entity\\User')
+            ->validate()
             ->ifTrue(function ($v) {
                 return !class_exists($v);
             })

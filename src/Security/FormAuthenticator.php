@@ -163,5 +163,4 @@ class FormAuthenticator extends AbstractGuardAuthenticator
         // you can check the user's IP address on every request
         return true;
     }
-    }
 }

@@ -25,7 +25,8 @@ class EasyAdminExtension extends Extension
         $configs = $this->processConfigFiles($configs);
         $backendConfig = $this->processConfiguration(new Configuration(), $configs);
         $container->setParameter('easyadmin.config', $backendConfig);
-        $container->setParameter('easyadmin.security', $backendConfig['user']);
+        $container->setParameter('easyadmin.security', $backendConfig['security']);
+        $container->setParameter('easyadmin.security.user_class', $backendConfig['security']['user_class']);
         $container->setParameter('easyadmin.cache.dir', $container->getParameter('kernel.cache_dir').'/easy_admin');
         $container->setParameter('easyadmin.custom_form_types', $backendConfig['custom_form_types']);
         $container->setParameter('easyadmin.minimum_role', $backendConfig['minimum_role']);
