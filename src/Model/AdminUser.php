@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 /**
  * Storage agnostic admin user object.
  */
-class AdminUser implements \AdminUserInterface
+class AdminUser implements AdminUserInterface
 {
     /**
      * @var mixed
