@@ -1,0 +1,30 @@
+services:
+    easyadmin.translations_component_type:
+        class: EasyAdminTranslationsBundle\Form\Type\TranslationsComponentType
+        arguments:
+            em: "@doctrine"
+        tags:
+            - { name: form.type, alias: eatb_translations_component }
+
+    easyadmin.hidden_entity_relation:
+        class: EasyAdminTranslationsBundle\Form\Type\HiddenEntityRelationType
+        arguments:
+            em: "@doctrine"
+        tags:
+            - { name: form.type, alias: hidden_entity_relation }
+
+    easyadmin.flash_message_listerner:
+        class: EasyAdminTranslationsBundle\Listener\FlashMessageListener
+        arguments:
+            translator: "@translator"
+            session: "@session"
+        tags:
+            - { name: kernel.event_subscriber }
+
+    easyadmin.translation_entity_creation_listener:
+        class: EasyAdminTranslationsBundle\Listener\TranslationEntityCreationListener
+        arguments:
+            em: "@doctrine"
+            configManager: "@easyadmin.config.manager"
+        tags:
+            - { name: kernel.event_subscriber }

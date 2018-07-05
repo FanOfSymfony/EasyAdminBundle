@@ -1,4 +1,6 @@
 easy_admin:
+    db_driver: orm
+
     entities:
         Category:
             class: AppTestBundle\Entity\FunctionalTests\Category

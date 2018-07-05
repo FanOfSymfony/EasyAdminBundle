@@ -9,3 +9,7 @@ easy_admin_security:
 easy_admin_registration:
     resource: "@EasyAdminBundle/Controller/RegistrationController.php"
     type: annotation
+
+easy_admin_translation:
+    resource: "@EasyAdminBundle/Controller/TranslationController.php"
+    type: annotation

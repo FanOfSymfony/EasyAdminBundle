@@ -74,11 +74,17 @@ class EasyAdminExtension extends Extension
                 $loader->load(sprintf('%s.xml', $config['db_driver']));
             }
 
+//            var_dump($container->getRe('easyadmin.doctrine_registry'));
+
             $container->setParameter('easyadmin'.'.backend_type_'.$config['db_driver'], true);
         }
 
         if (isset(self::$doctrineDrivers[$config['db_driver']])) {
             $definition = $container->getDefinition('easyadmin.object_manager');
+
+            var_dump($definition);
+
+
             $definition->setFactory(array(new Reference('easyadmin.doctrine_registry'), 'getManager'));
         }
 
@@ -132,6 +138,8 @@ class EasyAdminExtension extends Extension
             // Use a private alias rather than a parameter, to avoid leaking it at runtime (the private alias will be removed)
             $container->setAlias('easyadmin.session', new Alias('session', false));
         }
+
+
 
 
         if ($container->getParameter('kernel.debug')) {
