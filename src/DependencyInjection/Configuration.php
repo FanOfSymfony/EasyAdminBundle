@@ -20,7 +20,7 @@ class   Configuration implements ConfigurationInterface
 
         $this->addDeprecationsSection($rootNode);
         $this->addGlobalOptionsSection($rootNode);
-        $this->addUserSection($rootNode);
+        $this->addSecuritySection($rootNode);
         $this->addDesignSection($rootNode);
         $this->addViewsSection($rootNode);
         $this->addEntitiesSection($rootNode);
